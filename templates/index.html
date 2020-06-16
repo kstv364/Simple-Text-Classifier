@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container">
+    <h2>Movie review Classifier</h2>
+    <form action="{{ url_for('predict')}}" method="post">
+        <textarea rows="10" style="width: 100%" name="user_review" placeholder="Your review"
+            required="required"></textarea>
+        <button type="submit" class="btn btn-primary btn-block btn-large">
+            Predict
+        </button>
+    </form>
+
+    {% if result %} {{ review }}
+    <h2>
+        {{ result }}
+    </h2>
+    {% endif %}
+</div>
+
+{% endblock %}
