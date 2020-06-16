@@ -10,9 +10,20 @@
         </button>
     </form>
 
-    {% if result %} {{ review }}
+    {% if result %} 
+
+    <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Your Review : </h5>
+          <p class="card-text">{{ review }}</p>
+        </div>
+      </div>
+
     <h2>
-        {{ result }}
+        <div class="alert alert-{{ tone }}" role="alert">
+            {{ result }}
+        </div>
+
     </h2>
     {% endif %}
 </div>

@@ -9,8 +9,6 @@ Created on Thu Jun 16 17:34:20 2020
 import tensorflow as tf
 import tensorflow_hub as hub
 
-MODEL_PATH = 'text.h5'
-
 
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template
@@ -31,10 +29,12 @@ def predict():
         review = tf.convert_to_tensor([review])
         result = model.predict_classes(review)[0][0]
         if(result==0):
-            result = 'This is a not a good review'
+            result = 'This is a negative review'
+            tone = 'danger'
         else:
-            result = 'This is good review'
-    return render_template('index.html',review = request.form['user_review'],result=result)
+            result = 'This is a positive review'
+            tone = 'success'
+    return render_template('index.html',review = request.form['user_review'],result=result,tone= tone)
 
 
 @app.route('/', methods=['GET'])
